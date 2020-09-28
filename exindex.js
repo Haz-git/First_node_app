@@ -1,26 +1,39 @@
+const { SSL_OP_SINGLE_DH_USE } = require('constants');
 const express = require('express');
+const path = require('path');
+const { DEFAULT_ECDH_CURVE } = require('tls');
 const app = express();
 
 //grabbing components:
-const index = './index.html';
-const contact = './contact-me.html';
-const about = './about.html';
-const notFound = './404.html';
+// const index = require('./index.html');
+// const contact = require('./contact-me.html');
+// const about = require('./about.html');
+// const notFound = require('./404.html');
 
 app.get('/', (req, res) => {
-    res.send(index);
+    res.sendFile('index.html', {
+        root: path.join(__dirname, '../first_app')
+    });
 });
 
+
+
 app.get('/contact-me', (req, res) => {
-    res.send(contact);
+    res.sendFile('contact-me.html', {
+        root: path.join(__dirname, '../first_app')
+    });
 });
 
 app.get('/about', (req, res) => {
-    res.send(about);
+    res.sendFile('about.html', {
+        root: path.join(__dirname, '../first_app')
+    });
 });
 
 app.get('/404', (req, res) => {
-    res.send(404);
+    res.sendFile('404.html', {
+        root: path.join(__dirname, '../first_app')
+    });
 });
 
 app.listen(8000, () => {
